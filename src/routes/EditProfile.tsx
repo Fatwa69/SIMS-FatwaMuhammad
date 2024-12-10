@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import profile from "../assets/Profile Photo.png";
-import { Col, Form, Image, InputGroup, Row } from "react-bootstrap";
+import { Col, Container, Form, Image, InputGroup, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit, faUser } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch, useSelector } from "react-redux";
@@ -97,6 +97,8 @@ const ProfileEdit: React.FC = () => {
   }, [profiles]);
 
   return (
+    <Container className="mt-24">
+
     <div className="profile-container pt-24 px-96">
       <div className="profile-header justify-items-center">
         <Image
@@ -169,6 +171,7 @@ const ProfileEdit: React.FC = () => {
         </Row>
       </Form>
     </div>
+    </Container>
   );
 };
 
