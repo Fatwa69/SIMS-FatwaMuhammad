@@ -81,11 +81,11 @@ const FormRegister = () => {
   return (
     <div className="form-login-container">
       <div className="form-login-header">
-        <div className="flex items-center justify-center gap-x-1 mb-8 mt-4">
+        <div className="flex items-center justify-center gap-x-1 mb-2">
           <Image src={logo} />
-          <span className="text-4xl font-semibold">SIMS PPOB</span>
+          <span className="text-xl font-semibold">SIMS PPOB</span>
         </div>
-        <p className="text-5xl mb-8 text-center font-semibold">
+        <p className="text-4xl text-center font-semibold">
           Masuk atau buat akun untuk memulai
         </p>
       </div>

@@ -39,11 +39,10 @@ body {
   position: fixed;
   top: 0;
   width: 100%;
-  background-color: #f8f9fa; 
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  background-color: #f8f9fa;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   z-index: 1000; /* biar diatas terus */
 }
-
 
 .custom-container {
   display: flex;
@@ -51,7 +50,6 @@ body {
   align-items: center;
   padding: 0.5rem 1rem;
 }
-
 
 .brand-container {
   display: flex;
@@ -70,7 +68,6 @@ body {
   text-decoration: none;
 }
 
-
 .nav-links {
   display: flex;
   gap: 1.5rem;
@@ -84,29 +81,25 @@ body {
 }
 
 .nav-link-item:hover {
-  color: #007bff; 
+  color: #007bff;
 }
-
 
 @media (max-width: 768px) {
   .custom-container {
     flex-direction: column;
   }
-
   .nav-links {
     margin-top: 0.5rem;
     gap: 1rem;
   }
 }
 
-
 .homepage-container {
   padding: 20px;
-  padding-top: 6rem; 
+  padding-top: 6rem;
   padding-bottom: 2rem;
-  background-color: #ffffff; 
+  background-color: #ffffff;
 }
-
 
 .welcome-container {
   text-align: left;
@@ -124,11 +117,59 @@ body {
   color: #666;
 }
 
-
 .wallet-container {
-  padding-right: 20px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 313px;
+  height: 178px;
+  margin: 0 auto;
+  background: url("/path-to-your-wallet-background.jpg") no-repeat center center;
+  background-size: cover;
+  border-radius: 10px;
 }
 
+.wallet-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1rem;
+  color: white;
+}
+
+.wallet-label {
+  font-size: 1rem;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.wallet-balance {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin: 0.5rem;
+}
+
+.wallet-action {
+  margin-top: 1rem;
+  background: transparent;
+  color: white;
+  border: none;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 1rem;
+  pointer-events: auto;
+}
+
+.wallet-action:hover {
+  text-decoration: none;
+  opacity: 0.8;
+}
 
 .service-categories {
   display: grid;
@@ -158,7 +199,6 @@ body {
   font-size: 0.9rem;
   font-weight: 500;
 }
-
 
 .banner-promo {
   display: flex;
@@ -194,100 +234,62 @@ body {
   color: #666;
 }
 
-
 @media (max-width: 768px) {
-  .welcome-container,
-  .wallet-container {
+  .welcome-container {
     text-align: center;
     justify-content: center;
   }
 
   .wallet-container {
-    margin-top: 1rem;
+    width: 90%;
+    height: auto;
+    aspect-ratio: 313 / 178;
   }
-}
-
-
-.wallet-container {
-  position: relative;
-  display: inline-block; 
+  .wallet-content {
+    padding: 1rem;
+  }
 }
 
 .wallet-bg {
   display: block;
-  max-width: 100%; 
-  height: auto; 
+  max-width: 100%;
+  height: auto;
 }
 
-.wallet-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+.login-container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 1.5rem;
-  color: white; 
-  pointer-events: none; 
-}
-
-.wallet-label {
-  font-size: 1rem;
-  margin: 0;
-  opacity: 0.9; 
-  pointer-events: auto; 
-}
-
-.wallet-balance {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin: 0.5rem 0;
-  pointer-events: auto;
-}
-
-.wallet-action {
-  margin-top: 1rem;
-  background: transparent;
-  color: white;
-  border: none;
-  text-decoration: underline;
-  cursor: pointer;
-  font-size: 1rem;
-  pointer-events: auto;
-}
-
-.wallet-action:hover {
-  text-decoration: none;
-  opacity: 0.8;
-}
-
-
-.login-container{
-  display: flex;
+  flex-direction: row;
   height: 100vh;
   overflow: hidden;
 }
 
-
-.form-login-container{
+.form-login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
-  background-color: #ffffff;
-  height: 100vh;
-  justify-content: center;
 }
-
 
 .form-login-header {
   text-align: center;
-  margin-bottom: 30px;
 }
 
+.form-login-header img {
+  max-width: 50px;
+  margin-right: 0.5rem;
+}
+
+.form-login-header span {
+  font-size: 2rem;
+}
+
+@media (max-width: 768px) {
+  .form-login-container {
+    margin-top: 4rem;
+  }
+  .form-login-header p {
+    font-size: 1.2rem;
+  }
+}
 
 .logo-placeholder {
   width: 100px;
@@ -297,7 +299,6 @@ body {
   margin: 0 auto 15px auto;
 }
 
-
 .form-login-title {
   font-size: 24px;
   font-weight: bold;
@@ -305,28 +306,27 @@ body {
   color: #333;
 }
 
-
 .form-login-subtitle {
   font-size: 16px;
   color: #666;
   margin-top: 5px;
 }
 
-
 .form-login {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background-color: #fff;
+
   width: 100%;
   max-width: 400px;
-  background-color: #fff;
   padding: 20px;
   border-radius: 8px;
- 
 }
-
 
 .form-group {
   margin-bottom: 15px;
 }
-
 
 .form-label {
   font-size: 14px;
@@ -334,7 +334,6 @@ body {
   margin-bottom: 5px;
   display: block;
 }
-
 
 .form-input {
   width: 100%;
@@ -350,10 +349,9 @@ body {
   box-shadow: 0px 0px 4px rgba(0, 123, 255, 0.25);
 }
 
-
 .form-login-btn {
   width: 100%;
-  padding: 12px;
+  padding: 0.7rem;
   font-size: 16px;
   font-weight: bold;
   background-color: #007bff;
@@ -367,7 +365,6 @@ body {
   background-color: #0056b3;
 }
 
-
 .form-footer {
   margin-top: 15px;
   text-align: center;
@@ -376,6 +373,16 @@ body {
 .form-footer-text {
   font-size: 14px;
   color: #666;
+}
+
+.form-footer-text a {
+  margin-left: 4px;
+  text-decoration: none;
+  color: #f82c14;
+}
+
+.form-footer-text a:hover {
+  text-decoration: underline;
 }
 
 .form-footer-link {
@@ -387,39 +394,63 @@ body {
   text-decoration: underline;
 }
 
-
 @media (max-width: 768px) {
   .form-login {
     padding: 15px;
   }
 }
 
-
-
-
-.form-container, .hero-container {
-  flex: 1; 
+.form-container {
+  flex: 1;
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem;
 }
 
+.hero-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff1f0;
+}
 
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+
+  .form-container,
+  .hero-container {
+    flex: none;
+    width: 100%;
+    padding: 1rem;
+  }
+  .hero-container {
+    display: none;
+  }
+}
 
 .input-wrapper {
   position: relative;
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  background: #fff;
 }
 
-.input-icon {
-  position: absolute;
-  top: 50%;
-  left: 10px; 
-  transform: translateY(-50%);
-  color: #aaa; 
+.input-wrapper .input-icon {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  color: #888;
 }
 
-.form-input {
-  padding-left: 35px; 
+.input-wrapper .form-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 1rem;
 }
 
 .password-toggle {
@@ -430,8 +461,6 @@ body {
   color: #aaa;
   cursor: pointer;
 }
-
-
 
 .profile-container {
   display: flex;
@@ -444,7 +473,6 @@ body {
   background-color: #fff;
   border-radius: 8px;
 }
-
 
 .profile-header {
   text-align: center;
@@ -466,7 +494,7 @@ body {
   display: inline-block;
   cursor: pointer;
   font-size: 16px;
-  color: #007bff;
+  color: #000;
   margin-top: 8px;
 }
 
@@ -502,7 +530,7 @@ body {
   background-color: #fff;
   border: 1px solid #ddd;
   border-right: none;
-  padding:  10px;
+  padding: 10px;
   color: #555;
   border-radius: 4px 0 0 4px;
 }
@@ -554,4 +582,60 @@ body {
 .btn-outline-danger:hover {
   background-color: #dc3545;
   color: #fff;
+}
+
+.topup-container {
+  padding-top: 24px;
+}
+
+.topup-content {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.topup-header {
+  margin-bottom: 16px;
+}
+
+.topup-title {
+  font-size: 1.25rem;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 600;
+}
+
+.topup-subtitle {
+  font-size: 1.5rem;
+  font-family: "Segoe UI", sans-serif;
+  font-weight: 700;
+}
+
+.topup-box {
+  padding: 16px;
+
+  border-radius: 8px;
+  height: 100%;
+}
+
+.topup-button {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.button-disabled {
+  background-color: #f0f0f0;
+  border-color: #ccc;
+  color: #888;
+}
+
+.button-active {
+  background-color: #f82c14;
+  border-color: #d33;
+  color: white;
+}
+
+.nominal-button {
+  width: 100%;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  color: #000;
 }

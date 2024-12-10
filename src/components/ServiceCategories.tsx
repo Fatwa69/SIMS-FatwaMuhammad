@@ -28,7 +28,7 @@ const ServiceCategories = () => {
   }, [dispatch, produk.length]);
 
   return (
-    <div className="mt-8 mb-8 text-center flex flex-wrap justify-center">
+    <div className="mt-12 mb-12 text-center flex flex-wrap justify-center">
       {produk.map((banners: Service, index: number) => (
         <div
           key={banners.service_code || index}
@@ -38,7 +38,7 @@ const ServiceCategories = () => {
           <Image
             src={banners.service_icon}
             className="ms-2 me-2"
-            style={{ width: "50px", height: "50px", objectFit: "contain" }}
+            style={{ width: "60px", height: "60px", objectFit: "contain" }}
           />
           <h3 className="text-center text-xs font-semibold font-segoe mt-2">
             {banners.service_name}

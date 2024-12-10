@@ -86,19 +86,19 @@ const TopUp = () => {
   };
 
   return (
-    <div className="pt-24">
+    <div className="topup-container mt-16">
       <Container>
         <ProfileWalletContainer />
-        <div className="mt-5 justify-items-center text-center">
-          <div className="mb-4">
-            <p className="text-xl font-segoe font-semibold">Silahkan Masukan</p>
-            <p className="text-2xl font-segoe font-bold">Nominal Top Up</p>
+        <div className="topup-content">
+          <div className="topup-header">
+            <p className="topup-title">Silahkan Masukan</p>
+            <p className="topup-subtitle">Nominal Top Up</p>
           </div>
           <Form onSubmit={handleTopUp}>
             <Row className="g-4">
               {/* Left Column: Input and Button */}
               <Col md={6}>
-                <div className="p-4 border rounded h-100">
+                <div className="topup-box">
                   <Form.Group className="mb-3" controlId="formGroupEmail">
                     <InputGroup hasValidation>
                       <InputGroup.Text id="inputGroupPrepend">
@@ -115,12 +115,9 @@ const TopUp = () => {
                     </InputGroup>
                   </Form.Group>
                   <Button
-                    className={`w-100 ${
-                      isFormEmpty
-                        ? "border border-gray-300"
-                        : "border-slate-200"
+                    className={`topup-button ${
+                      isFormEmpty ? "button-disabled" : "button-active"
                     }`}
-                    variant={isFormEmpty ? "secondary" : "danger"}
                     disabled={isFormEmpty}
                     type="submit"
                   >
@@ -131,13 +128,13 @@ const TopUp = () => {
 
               {/* Right Column: Nominal Picker */}
               <Col md={6}>
-                <div className="p-4 border rounded h-100">
+                <div className="topup-box">
                   <Row className="g-2">
                     {nominalOptions.map((nominal) => (
                       <Col key={nominal} xs={6}>
                         <Button
                           variant="outline-secondary"
-                          className="w-100 border border-primary bg-slate-200"
+                          className="nominal-button"
                           onClick={() => handleNominalClick(nominal)}
                         >
                           {FormatCurrency(nominal)}

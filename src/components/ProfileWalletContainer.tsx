@@ -4,7 +4,7 @@ import FormatCurrency from "./FormatCurrency";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchBalance, fetchProfile } from "../config/UserProfileSlice";
 import profile from "../assets/Profile Photo.png";
-import background from "../assets/Background Saldo.png"; 
+import background from "../assets/Background Saldo.png";
 import { RootState, AppDispatch } from "../config/store";
 
 const ProfileWalletContainer = () => {
@@ -25,8 +25,9 @@ const ProfileWalletContainer = () => {
   };
 
   return (
-    <div className="flex flex-row">
-      <div className="main-photo w-1/4 px-32">
+    <div className="flex flex-col lg:flex-row items-center lg:items-start gap-6 mt-2">
+      {/* Profile Section */}
+      <div className="main-photo flex flex-col items-center w-full lg:w-1/4 lg:items-start lg:ms-20">
         <Image
           src={
             profiles?.profile_image ===
@@ -34,37 +35,41 @@ const ProfileWalletContainer = () => {
               ? profile
               : profiles?.profile_image
           }
-          style={{ objectFit: "cover", borderRadius: "300px" }} // Add border radius
+          className="object-cover rounded-full w-24 h-24 lg:w-24 lg:h-24"
         />
-        <div className="mt-4">
-          {/* Add margin top for spacing */}
-          <h3 className="font-semibold font-segoe">Selamat Datang, </h3>
-          <h1 className="text-2xl font-extrabold font-segoe">
+        <div className="mt-4 text-center lg:text-left">
+          <h3 className="font-semibold font-sans">Selamat Datang,</h3>
+          <h1 className="text-lg lg:text-2xl font-segoe font-bold">
             {profiles?.first_name} {profiles?.last_name}
           </h1>
         </div>
       </div>
+
+      {/* Wallet Section */}
       <div
-        className="w-1/2 px-4 bg-contain bg-no-repeat ms-80"
-        style={{ backgroundImage: `url(${background})` }}
+        className="relative w-full lg:w-1/2 xl:w-2/4 p-6 bg-cover bg-no-repeat rounded-lg lg:self-start lg:ml-auto lg:mr-20"
+        style={{
+          backgroundImage: `url(${background})`,
+          backgroundPosition: "center",
+        }}
       >
-        <div className=" flex flex-col h-full pt-4 px-1">
-          <h3 className="text-white font-segoe font-semibold text-xl">
+        {/* Wallet Content */}
+        <div className="flex flex-col h-full items-center lg:items-start text-left">
+          <h3 className="text-white font-segoe font-semibold text-lg lg:text-xl">
             Saldo Anda
           </h3>
           {showBalance ? (
-            <h1 className="text-white pt-4 font-segoe text-4xl font-semibold">
+            <h1 className="text-white font-segoe pt-2 text-2xl lg:text-4xl font-bold">
               {FormatCurrency(balance ?? 0)}
             </h1>
           ) : (
-            <h3 className="text-white pt-4 font-segoe text-4xl font-semibold">
+            <h3 className="text-white font-segoe pt-2 text-2xl lg:text-4xl font-bold">
               Rp <span>•••••••</span>
             </h3>
           )}
           <h5
-            style={{ cursor: "pointer", marginTop: "17px" }}
             onClick={ToggleBalanceVisibility}
-            className="text-white pt-4 px-2 text-sm font-segoe font-semibold"
+            className="text-white pt-4 lg:mt-2 text-sm font-segoe font-semibold cursor-pointer"
           >
             {showBalance ? "Sembunyikan Saldo" : "Lihat Saldo"}
           </h5>
