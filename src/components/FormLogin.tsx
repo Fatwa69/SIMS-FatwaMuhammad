@@ -6,7 +6,7 @@ import { FaEyeSlash, FaEye } from "react-icons/fa";
 import { CiAt, CiLock } from "react-icons/ci";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import logo from "../assets/logo.png";
+import logo from "../assets/Logo.png";
 import { loginUser, setAuthToken } from "../config/api";
 
 const FormLogin = () => {
