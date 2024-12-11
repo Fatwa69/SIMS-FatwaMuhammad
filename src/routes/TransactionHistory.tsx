@@ -28,9 +28,9 @@ const TransactionHistory: React.FC = () => {
   console.log("Total Transactions:", transactions.length);
 
   return (
-    <div className="mb-12">
+    <div className="mt-24">
       <ProfileWalletContainer />
-      <div className="w-full ml-10 mr-10 justify-items-center">
+      <div className="w-full ml-10 mr-10 justify-items-center mt-12">
         <Card sx={{ maxWidth: 800, width: "100%", marginTop: "24px" }}>
           <h1 className="text-xl px-4 py-4 font-segoe font-semibold">
             Semua Transaksi
