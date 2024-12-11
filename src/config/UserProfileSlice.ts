@@ -22,10 +22,13 @@ import Swal from "sweetalert2";
 
 
 interface Transaction {
+  invoice_number: string;
+  transaction_type: string;
   description: string;
   total_amount: number;
-  created_on: string; 
+  created_on: string;
 }
+
 
 interface TransactionData {
   service_id: number;
@@ -307,12 +310,3 @@ export const selectServices = createSelector(
 );
 
 
-export const selectTransactions = createSelector(
-  (state: RootState) => state.profile.transaction.records,
-  (records) => records || []  
-);
-
-export const selectTransactionOffset = createSelector(
-  (state: RootState) => state.profile.transaction.offset,
-  (offset) => offset || 0  
-);

@@ -24,10 +24,8 @@ interface UserResponse {
   user: User;
 }
 
-// TopupData interface for top-up
 interface TopupData {
-  top_up_amount: number; // Amount to be topped up
-  // Add any other properties required for top-up
+  top_up_amount: number;
 }
 
 interface Transaction {
@@ -70,7 +68,6 @@ interface Service {
   price: number;
   image: string;
 }
-
 
 interface Banner {
   id: string;

@@ -1,95 +1,111 @@
-import { useEffect, useCallback, useMemo } from "react";
-import { Container } from "react-bootstrap";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  listTransactionAsync,
-  selectTransactions,
-  selectTransactionOffset,
-} from "../config/UserProfileSlice";
-import FormatCurrency from "../components/FormatCurrency";
+import { AppDispatch, RootState } from "../config/store";
+import { getTransactionHistory } from "../config/transactionSlice";
+import { Card, CardContent, Typography, Button } from "@mui/material";
 import ProfileWalletContainer from "../components/ProfileWalletContainer";
-import { format, parseISO } from "date-fns";
-import { AppDispatch } from "../config/store";
 
-interface Transaction {
-  description: string;
-  total_amount: number;
-  created_on: string;
-}
+const ITEMS_PER_PAGE = 5;
 
-const TransactionHistory = () => {
+const TransactionHistory: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
+  const { transactions } = useSelector(
+    (state: RootState) => state.transactions
+  );
 
-  const records: Transaction[] = useSelector(selectTransactions) || [];
-  const offset = useSelector(selectTransactionOffset);
-
-  console.log("Current Records:", records);
-  console.log("Current Offset:", offset);
-
-  const showMore = useCallback(() => {
-    dispatch(listTransactionAsync(offset));
-  }, [dispatch, offset]);
+  const [visibleTransactions, setVisibleTransactions] =
+    useState(ITEMS_PER_PAGE);
 
   useEffect(() => {
-    if (records.length === 0) {
-      console.log("Attempting to fetch initial transactions");
-      dispatch(listTransactionAsync(0));
-    }
-  }, [dispatch, records.length]);
+    dispatch(getTransactionHistory());
+  }, [dispatch]);
 
-  const transactionList = useMemo(() => {
-    return records.map((transaction: Transaction, i: number) => (
-      <div
-        className="card shadow pt-2 ps-3 mb-3"
-        key={`${transaction.description}-${i}`}
-      >
-        <div className="d-flex">
-          {transaction.description === "Top Up Balance" ? (
-            <p className="fs-4 fw-semibold col-md-6 text-success text-start">
-              {`+ ${FormatCurrency(Number(transaction.total_amount))}`}
-            </p>
-          ) : (
-            <p className="fs-4 fw-semibold col-md-6 text-danger text-start">
-              {`- ${FormatCurrency(Number(transaction.total_amount))}`}
-            </p>
-          )}
-          <p className="col-md-6 text-end pe-2">{transaction.description}</p>
-        </div>
-        <p className="text-secondary">
-          {format(
-            parseISO(transaction.created_on),
-            "dd MMMM yyyy 'pukul' HH:mm"
-          )}
-        </p>
-      </div>
-    ));
-  }, [records]);
+  const handleShowMore = () => {
+    setVisibleTransactions((prev) => prev + ITEMS_PER_PAGE);
+  };
+
+  console.log("Visible Transactions:", visibleTransactions);
+  console.log("Total Transactions:", transactions.length);
 
   return (
-    <div className="pt-24">
-      <Container>
-        <ProfileWalletContainer />
-        <div className="row mt-4">
-          <p className="font-semibold text-xl px-10 py-4">Semua Transaksi</p>
-          <div>
-            {records && records.length > 0 ? (
-              <div>{transactionList}</div>
-            ) : (
-              <h1 className="text-center">
-                Maaf, tidak ada histori transaksi saat ini.
-              </h1>
-            )}
-          </div>
-          {records && records.length > 0 && (
-            <div
-              className="my-5 text-center fw-bold text-danger cursor-pointer"
-              onClick={showMore}
-            >
-              Show more
+    <div className="mb-12">
+      <ProfileWalletContainer />
+      <div className="w-full ml-10 mr-10 justify-items-center">
+        <Card sx={{ maxWidth: 800, width: "100%", marginTop: "24px" }}>
+          <h1 className="text-xl px-4 py-4 font-segoe font-semibold">
+            Semua Transaksi
+          </h1>
+          <CardContent>
+            <div className="space-y-4 flex flex-col items-center">
+              {transactions.slice(0, visibleTransactions).map((transaction) => (
+                <div
+                  key={transaction.invoice_number}
+                  className="flex justify-between items-center w-full border-b border-gray-300 pb-4"
+                >
+                  <div>
+                    <Typography
+                      variant="body1"
+                      color={
+                        transaction.transaction_type === "TOPUP"
+                          ? "success.main"
+                          : "error.main"
+                      }
+                      fontWeight="bold"
+                      fontFamily="Segoe UI"
+                    >
+                      {transaction.transaction_type === "TOPUP" ? "+" : "-"} Rp{" "}
+                      {Math.abs(transaction.total_amount).toLocaleString(
+                        "id-ID"
+                      )}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="text.secondary"
+                      fontFamily="Segoe UI"
+                    >
+                      {new Date(transaction.created_on).toLocaleDateString(
+                        "id-ID",
+                        {
+                          day: "2-digit",
+                          month: "long",
+                          year: "numeric",
+                        }
+                      )}{" "}
+                      {new Date(transaction.created_on).toLocaleTimeString(
+                        "id-ID",
+                        {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        }
+                      )}{" "}
+                      WIB
+                    </Typography>
+                  </div>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    fontFamily="Segoe UI"
+                  >
+                    {transaction.description}
+                  </Typography>
+                </div>
+              ))}
             </div>
-          )}
-        </div>
-      </Container>
+            {visibleTransactions < transactions.length && (
+              <div className="mt-4 text-center">
+                <Button
+                  variant="contained"
+                  color="secondary"
+                  onClick={handleShowMore}
+                  sx={{ mt: 2 }}
+                >
+                  Show more
+                </Button>
+              </div>
+            )}
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 };
