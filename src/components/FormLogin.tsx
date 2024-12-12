@@ -74,7 +74,7 @@ const FormLogin = () => {
   };
 
   return (
-    <div className="form-login-container">
+    <div className="form-login-container font-segoe">
       <ToastContainer position="bottom-left" />
       <div className="form-login-header">
         <div className="flex items-center justify-center gap-x-1 mt-4 mb-6">

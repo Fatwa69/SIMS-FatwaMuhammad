@@ -79,14 +79,14 @@ const FormRegister = () => {
   };
 
   return (
-    <div className="form-login-container">
+    <div className="form-login-container font-segoe">
       <div className="form-login-header">
         <div className="flex items-center justify-center gap-x-1 mb-2">
           <Image src={logo} />
           <span className="text-xl font-semibold">SIMS PPOB</span>
         </div>
         <p className="text-4xl text-center font-semibold">
-          Masuk atau buat akun untuk memulai
+          Lengkapi data untuk membuat akun
         </p>
       </div>
       <Form onSubmit={handleSubmit} className="form-login">
@@ -207,7 +207,7 @@ const FormRegister = () => {
           type="submit"
           className="form-login-btn"
         >
-          Register
+          Registrasi
         </Button>
         <div className="form-footer">
           <span className="form-footer-text">

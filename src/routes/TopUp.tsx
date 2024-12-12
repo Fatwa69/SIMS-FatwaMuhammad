@@ -99,7 +99,7 @@ const TopUp = () => {
               {/* Left Column: Input and Button */}
               <Col md={6}>
                 <div className="topup-box">
-                  <Form.Group className="mb-3" controlId="formGroupEmail">
+                  <Form.Group className="mb-3 font-segoe" controlId="formGroupEmail">
                     <InputGroup hasValidation>
                       <InputGroup.Text id="inputGroupPrepend">
                         Rp
@@ -115,7 +115,7 @@ const TopUp = () => {
                     </InputGroup>
                   </Form.Group>
                   <Button
-                    className={`topup-button ${
+                    className={`topup-button font-segoe ${
                       isFormEmpty ? "button-disabled" : "button-active"
                     }`}
                     disabled={isFormEmpty}
@@ -128,7 +128,7 @@ const TopUp = () => {
 
               {/* Right Column: Nominal Picker */}
               <Col md={6}>
-                <div className="topup-box">
+                <div className="topup-box font-segoe">
                   <Row className="g-2">
                     {nominalOptions.map((nominal) => (
                       <Col key={nominal} xs={6}>

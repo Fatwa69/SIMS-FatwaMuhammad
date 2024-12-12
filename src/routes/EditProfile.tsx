@@ -98,79 +98,78 @@ const ProfileEdit: React.FC = () => {
 
   return (
     <Container className="mt-24">
-
-    <div className="profile-container pt-24 px-96">
-      <div className="profile-header justify-items-center">
-        <Image
-          src={
-            profiles?.profile_image === "https://yoururlapi.com/"
-              ? profile
-              : profiles?.profile_image
-          }
-          className="profile-image"
-        />
-        <label htmlFor="imageInput">
-          <FontAwesomeIcon icon={faEdit} className="edit-icon" />
-        </label>
-        <input
-          type="file"
-          id="imageInput"
-          accept="image/*"
-          style={{ display: "none" }}
-          onChange={handleImageChange}
-        />
-        <p className="profile-name">
-          {profiles?.first_name} {profiles?.last_name}
-        </p>
-      </div>
-      <Form className="profile-form">
-        <Row className="justify-content-center">
-          <Form.Group as={Col} md={8} className="form-group">
-            <Form.Label>Email</Form.Label>
-            <InputGroup>
-              <InputGroup.Text>@</InputGroup.Text>
-              <Form.Control type="email" value={profiles?.email} disabled />
-            </InputGroup>
-          </Form.Group>
-          <Form.Group as={Col} md={8} className="form-group">
-            <Form.Label>Nama Depan</Form.Label>
-            <InputGroup>
-              <InputGroup.Text>
-                <FontAwesomeIcon icon={faUser} />
-              </InputGroup.Text>
-              <Form.Control
-                type="text"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                disabled={inputDisabled}
-              />
-            </InputGroup>
-          </Form.Group>
-          <Form.Group as={Col} md={8} className="form-group">
-            <Form.Label>Nama Belakang</Form.Label>
-            <InputGroup>
-              <InputGroup.Text>
-                <FontAwesomeIcon icon={faUser} />
-              </InputGroup.Text>
-              <Form.Control
-                type="text"
-                value={lastName}
-                onChange={(e) => setLastName(e.target.value)}
-                disabled={inputDisabled}
-              />
-            </InputGroup>
-          </Form.Group>
-          <div className="btn btn-danger" onClick={handleEditProfile}>
-            {editButtonText}
-          </div>
-          {inputDisabled && (
-            <div className="btn btn-outline-danger" onClick={handleLogout}>
-              Logout
+      <div className="profile-container pt-24 px-96">
+        <div className="profile-header justify-items-center">
+          <Image
+            src={
+              profiles?.profile_image === "https://yoururlapi.com/"
+                ? profile
+                : profiles?.profile_image
+            }
+            className="profile-image"
+          />
+          <label htmlFor="imageInput">
+            <FontAwesomeIcon icon={faEdit} className="edit-icon bg-" />
+          </label>
+          <input
+            type="file"
+            id="imageInput"
+            accept="image/*"
+            style={{ display: "none" }}
+            onChange={handleImageChange}
+          />
+          <p className="profile-name font-segoe">
+            {profiles?.first_name} {profiles?.last_name}
+          </p>
+        </div>
+        <Form className="profile-form">
+          <Row className="justify-content-center">
+            <Form.Group as={Col} md={8} className="form-group font-segoe">
+              <Form.Label>Email</Form.Label>
+              <InputGroup>
+                <InputGroup.Text>@</InputGroup.Text>
+                <Form.Control type="email" value={profiles?.email} disabled />
+              </InputGroup>
+            </Form.Group>
+            <Form.Group as={Col} md={8} className="form-group font-segoe">
+              <Form.Label>Nama Depan</Form.Label>
+              <InputGroup>
+                <InputGroup.Text>
+                  <FontAwesomeIcon icon={faUser} />
+                </InputGroup.Text>
+                <Form.Control
+                  type="text"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                  disabled={inputDisabled}
+                />
+              </InputGroup>
+            </Form.Group>
+            <Form.Group as={Col} md={8} className="form-group font-segoe">
+              <Form.Label>Nama Belakang</Form.Label>
+              <InputGroup>
+                <InputGroup.Text>
+                  <FontAwesomeIcon icon={faUser} />
+                </InputGroup.Text>
+                <Form.Control
+                  type="text"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                  disabled={inputDisabled}
+                />
+              </InputGroup>
+            </Form.Group>
+            <div className="btn btn-danger font-segoe" onClick={handleEditProfile}>
+              {editButtonText}
             </div>
-          )}
-        </Row>
-      </Form>
-    </div>
+            {inputDisabled && (
+              <div className="btn btn-outline-danger font-segoe" onClick={handleLogout}>
+                Logout
+              </div>
+            )}
+          </Row>
+        </Form>
+      </div>
     </Container>
   );
 };

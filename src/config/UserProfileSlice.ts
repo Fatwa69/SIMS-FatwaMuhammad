@@ -3,7 +3,6 @@ import {
   createSlice,
   createAsyncThunk,
   createEntityAdapter,
-  PayloadAction,
 } from "@reduxjs/toolkit";
 import {
   profile,
@@ -15,7 +14,6 @@ import {
   Banner,
   Topup,
   Transaction,
-  API,
 } from "./api";
 import Swal from "sweetalert2";
 
@@ -53,10 +51,6 @@ interface ProfileData {
   [key: string]: any;
 }
 
-interface TransactionPayload {
-  data: Transaction[];
-  offset: number;
-}
 
 const profileAdapter = createEntityAdapter();
 
@@ -183,26 +177,6 @@ export const TransactionAsync = createAsyncThunk(
   }
 );
 
-export const listTransactionAsync = createAsyncThunk(
-  "profile/listTransaction",
-  async (offset: number, { rejectWithValue }) => {
-    setAuthToken(localStorage.getItem("jwtToken"));
-    try {
-      const response = await API.get(
-        `/transaction/history?offset=${offset}&limit=5`
-      );
-
-      const transactions = Array.isArray(response.data.data)
-        ? response.data.data
-        : [];
-      return { data: transactions, offset };
-    } catch (error: any) {
-      console.log("Error List Transaction :", error);
-      return rejectWithValue(error.response?.data?.message || error.message);
-    }
-  }
-);
-
 
 const initialState: ProfileState = {
   ...profileAdapter.getInitialState(),
@@ -284,19 +258,7 @@ const profileSlice = createSlice({
         state.status = "failed";
         state.error = action.payload as string;
       })
-      .addCase(
-        listTransactionAsync.fulfilled,
-        (state, action: PayloadAction<TransactionPayload>) => {
-          state.status = "success";
-          
-          state.transaction.records = [
-            ...state.transaction.records,
-            ...action.payload.data,
-          ];
-          state.transaction.offset = action.payload.offset + 5;
-          state.offset = action.payload.offset + 5;
-        }
-      );
+      
   },
 });
 
