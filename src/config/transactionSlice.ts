@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { fetchTransactionHistory, setAuthToken } from "./api"; // Import the function you defined in api.ts
+import { fetchTransactionHistory, setAuthToken } from "./api";
 import { AxiosResponse } from "axios";
 
 interface Transaction {
@@ -22,30 +22,25 @@ const initialState: TransactionState = {
   error: null,
 };
 
-// Async thunk to fetch transaction history
+// Async thunk
 export const getTransactionHistory = createAsyncThunk<
   Transaction[],
   void,
   { rejectValue: string }
 >("transactions/getTransactionHistory", async (_, { rejectWithValue }) => {
   try {
-    // Retrieve the JWT token from localStorage
     const token = localStorage.getItem("jwtToken");
     if (!token) {
       console.error("JWT Token not found in localStorage");
       return rejectWithValue("Authentication token not found. Please log in.");
     }
 
-    // Set the token in Axios
     setAuthToken(token);
 
-    // Fetch transaction history
     const response: AxiosResponse = await fetchTransactionHistory();
 
-    // Log the response for debugging
     console.log("Response:", response.data);
 
-    // Check response status
     if (response.data.status !== 0) {
       return rejectWithValue(
         response.data.message || "Failed to fetch transactions"
