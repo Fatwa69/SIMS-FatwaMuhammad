@@ -5,7 +5,6 @@ import { useEffect } from "react";
 import { fetchServices, selectServices } from "../config/UserProfileSlice";
 import { AppDispatch } from "../config/store";
 
-// Define an interface for the service type
 interface Service {
   service_code: string;
   service_name: string;
@@ -33,7 +32,7 @@ const ServiceCategories = () => {
         <div
           key={banners.service_code || index}
           className="flex flex-col items-center px-2 mr-2 hover:cursor-pointer hover:text-red-500"
-          onClick={() => navigate(`/purchase/${banners.service_code}`)} // Add the onClick event here
+          onClick={() => navigate(`/purchase/${banners.service_code}`)} 
         >
           <Image
             src={banners.service_icon}

@@ -7,7 +7,7 @@ const RootLayout: React.FC = () => {
     <div className="flex flex-col min-h-screen">
       <Navbar />
       <main className="flex-grow">
-        <Outlet /> {/* This renders child routes */}
+        <Outlet />
       </main>
       <Footer />
     </div>
